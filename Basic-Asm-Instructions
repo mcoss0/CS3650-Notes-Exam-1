@@ -1,52 +1,36 @@
-addi (Add Immediate): Adds a constant value to a register. Registers are small, fast storage locations within the CPU used to hold data or addresses that the CPU is currently working on. Example use: incrementing a value or adding a fixed offset to an address.
+Assembly Instructions Overview
+Assembly instructions are the basic operations that a processor executes to perform tasks like arithmetic, data transfer, and control flow. In the context of MIPS architecture, these instructions are designed for efficiency and simplicity, with a wide range of operations to handle various programming needs. Below, we'll explore some of the key instructions and concepts:
 
-li (Load Immediate): Loads a constant value directly into a register. Used for initializing registers with specific values.
+1. addi (Add Immediate)
+Functionality: addi $dest, $src, immediate
+Purpose: Adds a constant value (immediate) to the contents of a source register and stores the result in a destination register. This instruction is crucial for operations that require constant adjustments, such as incrementing counters or adjusting pointers.
+Example Application: Increasing the index of an array by a fixed step or adjusting the base address of a data structure to access its fields.
+2. li (Load Immediate)
+Functionality: li $dest, immediate
+Purpose: Directly loads a constant value into a register. This is especially useful for initializing registers with known values at the start of a subroutine or for setting up constants for calculations.
+Example Application: Setting initial loop counters or preparing specific flags for later operations.
+3. lw (Load Word)
+Functionality: lw $dest, offset($base)
+Purpose: Loads a 32-bit word from a specific memory address into a register. The memory address is calculated by adding an offset to the base address contained in a register. It's fundamental for accessing complex data structures or arrays in memory.
+Example Application: Retrieving an element of an array or a field from a data structure stored in memory.
+4. sw (Store Word)
+Functionality: sw $src, offset($base)
+Purpose: Stores a 32-bit word from a register into a specific memory address, determined by adding an offset to a base address in another register. This instruction is essential for recording computation results or updating data structures in memory.
+Example Application: Saving the results of calculations back into an array or updating the fields of a data structure.
+5. beq (Branch if Equal)
+Functionality: beq $src1, $src2, label
+Purpose: Compares two registers, and if they are equal, branches to the instruction labeled by the specified label. This control flow instruction supports the implementation of loops, conditional statements, and decision-making processes in assembly code.
+Example Application: Implementing loop termination conditions or conditional execution paths based on comparison results.
+Addressing Modes Overview
+Addressing modes define how the processor calculates the memory address of an operand for data transfer instructions or the target address for control flow instructions. They are crucial for instruction flexibility and efficient memory access. Here's a closer look at the addressing modes mentioned:
 
-lw (Load Word): Loads a 32-bit word from memory into a register. Memory addresses are used to identify specific locations in memory where data is stored. This instruction is used for accessing data structures or arrays in memory.
-
-sw (Store Word): Stores a 32-bit word from a register into memory. It’s essential for saving results of computations or updating values in data structures.
-
-beq (Branch if Equal): Branches to a specified label if two registers are equal. This is used for conditional execution, such as loops or if statements.
-
-bne (Branch if Not Equal): Branches to a specified label if two registers are not equal. Similar to beq, used for controlling program flow based on conditions.
-
-j (Jump): Unconditionally jumps to a specified label. It is used for implementing jumps within the program, such as function calls or loops.
-
-jal (Jump And Link): Jumps to a specified label and stores the return address in $ra (return address register). It is used for calling functions.
-
-jr (Jump Register): Jumps to an address contained in a register, typically used to return from functions by jumping to the address in $ra.
-
-andi (AND Immediate): Performs a bitwise AND operation between a register and an immediate value. Useful for masking bits.
-
-ori (OR Immediate): Performs a bitwise OR operation between a register and an immediate value. Often used for setting specific bits.
-
-sll (Shift Left Logical): Shifts a register value left by a specified number of bits. Used for multiplying by powers of 2 or aligning data.
-
-sra (Shift Right Arithmetic): Shifts a register value right by a specified number of bits, preserving the sign. Useful for signed division by powers of 2.
-
-mul (Multiply): Multiplies two registers and stores the result in a register. Essential for arithmetic calculations.
-
-div (Divide): Divides the first register by the second and stores the quotient and remainder in special registers. Used for arithmetic division operations.
-
-syscall (System Call): Performs a system call, a request to the kernel. Syscalls are used for input/output operations, such as reading from the keyboard or printing to the screen.
-
-General Purpose Registers
-$zero (Register 0): Always contains the constant value 0.
-$at (Register 1): Reserved for the assembler's use.
-$v0-$v1 (Registers 2-3): Used for function return values.
-$a0-$a3 (Registers 4-7): Used for function arguments.
-$t0-$t7 (Registers 8-15): Temporary registers, not preserved across function calls.
-$s0-$s7 (Registers 16-23): Saved registers, preserved across function calls.
-$t8-$t9 (Registers 24-25): More temporary registers, not preserved across function calls.
-$k0-$k1 (Registers 26-27): Reserved for kernel use.
-$gp (Register 28): Global pointer, points to the middle of the 64K block in static data segment.
-$sp (Register 29): Stack pointer, points to the last location on the stack.
-$fp (Register 30): Frame pointer, used to support stack frame, also known as $s8.
-$ra (Register 31): Return address, stores the return address for function calls.
-
-Addresses:
-Direct Addressing: Accessing data by directly specifying the memory address.
-Register Addressing: Using a register to hold the address of the memory location you want to access. Common with instructions like lw (load word) and sw (store word).
-Immediate Addressing: The address or offset is part of the instruction itself, often used with branch instructions or when loading immediate values.
-PC-relative Addressing: The address is determined relative to the current location of the program counter, typically used in branch instructions.
-Pseudo-direct Addressing: Used in jump instructions where the address is partially specified by the instruction and partially taken from the program counter.
+1. Direct Addressing
+Description: Involves specifying the exact memory address where data is stored or to be retrieved from. This mode is straightforward but less flexible, as it requires knowing the exact address beforehand.
+2. Register Addressing
+Description: Uses a register to hold the memory address of the data of interest. This mode provides more flexibility and speed since accessing registers is faster than accessing memory, and it supports dynamic calculation of addresses.
+3. Immediate Addressing
+Description: Embeds the operand or the address within the instruction itself. This is especially useful for loading constants or specifying short distances for branch instructions, offering quick access to values without additional memory reads.
+4. PC-relative Addressing
+Description: Calculates the target address by adding an offset to the current program counter (PC). This mode is widely used for branch instructions, allowing for efficient implementation of conditional execution and loops within a limited range.
+5. Pseudo-direct Addressing
+Description: Utilized primarily in jump instructions, where the target address is partially specified by the instruction and partially derived from the current PC, facilitating jumps within a broader range in the program code.

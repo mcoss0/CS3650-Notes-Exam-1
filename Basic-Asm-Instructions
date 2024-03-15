@@ -1,0 +1,31 @@
+addi (Add Immediate): Adds a constant value to a register. Registers are small, fast storage locations within the CPU used to hold data or addresses that the CPU is currently working on. Example use: incrementing a value or adding a fixed offset to an address.
+
+li (Load Immediate): Loads a constant value directly into a register. Used for initializing registers with specific values.
+
+lw (Load Word): Loads a 32-bit word from memory into a register. Memory addresses are used to identify specific locations in memory where data is stored. This instruction is used for accessing data structures or arrays in memory.
+
+sw (Store Word): Stores a 32-bit word from a register into memory. It’s essential for saving results of computations or updating values in data structures.
+
+beq (Branch if Equal): Branches to a specified label if two registers are equal. This is used for conditional execution, such as loops or if statements.
+
+bne (Branch if Not Equal): Branches to a specified label if two registers are not equal. Similar to beq, used for controlling program flow based on conditions.
+
+j (Jump): Unconditionally jumps to a specified label. It is used for implementing jumps within the program, such as function calls or loops.
+
+jal (Jump And Link): Jumps to a specified label and stores the return address in $ra (return address register). It is used for calling functions.
+
+jr (Jump Register): Jumps to an address contained in a register, typically used to return from functions by jumping to the address in $ra.
+
+andi (AND Immediate): Performs a bitwise AND operation between a register and an immediate value. Useful for masking bits.
+
+ori (OR Immediate): Performs a bitwise OR operation between a register and an immediate value. Often used for setting specific bits.
+
+sll (Shift Left Logical): Shifts a register value left by a specified number of bits. Used for multiplying by powers of 2 or aligning data.
+
+sra (Shift Right Arithmetic): Shifts a register value right by a specified number of bits, preserving the sign. Useful for signed division by powers of 2.
+
+mul (Multiply): Multiplies two registers and stores the result in a register. Essential for arithmetic calculations.
+
+div (Divide): Divides the first register by the second and stores the quotient and remainder in special registers. Used for arithmetic division operations.
+
+syscall (System Call): Performs a system call, a request to the kernel. Syscalls are used for input/output operations, such as reading from the keyboard or printing to the screen.

@@ -29,3 +29,24 @@ mul (Multiply): Multiplies two registers and stores the result in a register. Es
 div (Divide): Divides the first register by the second and stores the quotient and remainder in special registers. Used for arithmetic division operations.
 
 syscall (System Call): Performs a system call, a request to the kernel. Syscalls are used for input/output operations, such as reading from the keyboard or printing to the screen.
+
+General Purpose Registers
+$zero (Register 0): Always contains the constant value 0.
+$at (Register 1): Reserved for the assembler's use.
+$v0-$v1 (Registers 2-3): Used for function return values.
+$a0-$a3 (Registers 4-7): Used for function arguments.
+$t0-$t7 (Registers 8-15): Temporary registers, not preserved across function calls.
+$s0-$s7 (Registers 16-23): Saved registers, preserved across function calls.
+$t8-$t9 (Registers 24-25): More temporary registers, not preserved across function calls.
+$k0-$k1 (Registers 26-27): Reserved for kernel use.
+$gp (Register 28): Global pointer, points to the middle of the 64K block in static data segment.
+$sp (Register 29): Stack pointer, points to the last location on the stack.
+$fp (Register 30): Frame pointer, used to support stack frame, also known as $s8.
+$ra (Register 31): Return address, stores the return address for function calls.
+
+Addresses:
+Direct Addressing: Accessing data by directly specifying the memory address.
+Register Addressing: Using a register to hold the address of the memory location you want to access. Common with instructions like lw (load word) and sw (store word).
+Immediate Addressing: The address or offset is part of the instruction itself, often used with branch instructions or when loading immediate values.
+PC-relative Addressing: The address is determined relative to the current location of the program counter, typically used in branch instructions.
+Pseudo-direct Addressing: Used in jump instructions where the address is partially specified by the instruction and partially taken from the program counter.
